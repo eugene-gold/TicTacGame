@@ -33,23 +33,29 @@ function click (row, col) {
       board[0][2] == player && board[1][2] == player && board[2][2] == player ||
       board[0][2] == player && board[1][2] == player && board[2][2] == player ||
       board[2][2] == player && board[1][2] == player && board[0][2] == player
-    )
+    ) 
       return true
-  }
+  }   
   
   if (activePlayer % 2 === 0) {
     board[row][col] = players[0];    
     activePlayer++;    
     renderBoard(board)    
     if(checkWin(players[0])) {
-      return showWinner('Крестики')
-    }    
+      return showWinner('Победили Х')
+    }
+    
   } else if (activePlayer % 2 !== 0) {
     board[row][col] = players[1]    
     activePlayer++    
     renderBoard(board)    
     if(checkWin(players[1])) {
-      return showWinner('Нолики')
-    }     
+      return showWinner('Победили О')
+    } 
   }
+  
+  if ((!checkWin(players[0])) && (!checkWin(players[1])) && activePlayer > 8) {
+    return showWinner('Ничья')
+  }
+  
 }
